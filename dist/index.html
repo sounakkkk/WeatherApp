@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="output.css">
+</head>
+<body class="bg-gradient-to-br from-gray-800 to-gray-400 min-h-screen flex flex-col items-center justify-center ">  
+    <div id="card" class="w-[90%] max-w-[470px] bg-gradient-to-r from-blue-600 to-purple-600 text-white mt-[100px] mx-auto rounded-[20px] px-[35px] py-[40px] text-center flex flex-col justify-center items-center mb-[60px] ">    
+        <div id="search" class="w-[100%] flex items-center justify-between">
+            <input type="text" placeholder="Enter your city " spellcheck="false"
+                class="text-black bg-teal-100 h-[60px] rounded-[30px] px-[25px] py-[10px] mr-[16px] text-[18px] text-gray flex-[1] border-[0] outline-[0]">
+            <button class="border-[0]
+            outline-[0] bg-teal-100 rounded-[50%] w-[60px] h-[60px] flex items-center justify-center cursor-pointer">
+            <img src="/images/search.png" alt="" class="w-[20px] h-[25px]" ></button>
+        </div>
+        <p id="error" class="mt-5 mr-60 hidden">Invalid city name</p> 
+        <div id="weather" class="flex flex-col justify-center items-center w-[100%] hidden">       
+            <img src="/images/rain.png" alt="" id="weatherIcon" class="size-45 w-[170px] mt-[30px] ">   
+            <h1 id="temp" class="text-[80px] font-[500] ">29°C</h1>    
+            <h2  id="city" class="text-[45px] text-[400]  mt-[-10px]">Kolkata</h2>     
+            <div id="details " class="w-[100%] flex justify-between">  
+                <div id="col">
+                    <img src="/images/humidity.png" alt="" class="mt-[15px]">
+                    <div >
+                        <p id="humidity">50%</p>
+                        <p>Humidity</p>
+                    </div>
+                </div>
+                <div id="col">
+                    <img src="/images/wind.png" alt="" class="mt-[19px]"> 
+                    <div >
+                        <p id="wind">15Km/h</p>
+                        <p>Wind</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    const apiKey="8aa59617c4d8fa807b5536a9f87e3acf";
+    const apiUrl="https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
+    
+    const searchBoxInput=document.querySelector("#search input");
+    const searchButton=document.querySelector("#search button");
+
+    const weatherIcon=document.querySelector("#weatherIcon");
+
+    const weather=document.querySelector("#weather");
+    const error=document.querySelector("#error");
+
+   async function checkWeather(city){
+       const response=await fetch(apiUrl+city+`&appid=${apiKey}`);
+       if(response.status==404){
+        weather.classList.add("hidden");
+        error.classList.remove("hidden")
+       }
+       else{
+        const ans= await response.json();
+
+        error.classList.add("hidden");
+        weather.classList.remove("hidden");
+    
+       
+       document.querySelector("#city").innerHTML=ans.name;
+       document.querySelector("#temp").innerHTML=Math.round(ans.main.temp)+"°C" ;
+       document.querySelector("#humidity").innerHTML=ans.main.humidity+"%";
+       document.querySelector("#wind").innerHTML=ans.wind.speed+"Km/h";
+
+       if(ans.weather[0].main=="Clouds"){
+        weatherIcon.src="/images/clouds.png";
+       }
+       else if(ans.weather[0].main=="Clear"){images
+        weatherIcon.src="/images/clear.png";
+       }
+       else if(ans.weather[0].main=="Drizzle"){
+        weatherIcon.src="/images/drizzle.png";
+       }
+       else if(ans.weather[0].main=="Humidity"){
+        weatherIcon.src="/images/humidity.png";
+       }
+       else if(ans.weather[0].main=="Mist"){
+        weatherIcon.src="/images/mist.png";
+       }
+       else if(ans.weather[0].main=="Rain"){
+        weatherIcon.src="/images/rain.png";
+       }
+       else if(ans.weather[0].main=="Snow"){
+        weatherIcon.src="/images/snow.png";
+       }
+       else if(ans.weather[0].main=="Wind"){
+        weatherIcon.src="/images/wind.png";
+       }
+       else if(ans.weather[0].main=="Haze"){
+        weatherIcon.src="/images/haze.png";
+       }
+       else if(ans.weather[0].main=="Smoke"){
+        weatherIcon.src="/images/smoke.png";
+       }
+    
+       }
+       
+    }
+    searchButton.addEventListener("click",()=>{
+        checkWeather(searchBoxInput.value);
+    })
+    
+</script>
+
+</html>
