@@ -13,23 +13,23 @@
                 class="text-black bg-teal-100 h-[60px] rounded-[30px] px-[25px] py-[10px] mr-[16px] text-[18px] text-gray flex-[1] border-[0] outline-[0]">
             <button class="border-[0]
             outline-[0] bg-teal-100 rounded-[50%] w-[60px] h-[60px] flex items-center justify-center cursor-pointer">
-            <img src="/dist/images/search.png" alt="" class="w-[20px] h-[25px]" ></button>
+            <img src="./images/search.png" alt="" class="w-[20px] h-[25px]" ></button>
         </div>
         <p id="error" class="mt-5 mr-60 hidden">Invalid city name</p> 
         <div id="weather" class="flex flex-col justify-center items-center w-[100%] hidden">       
-            <img src="/dist/images/rain.png" alt="" id="weatherIcon" class="size-45 w-[170px] mt-[30px] ">   
+            <img src="./images/rain.png" alt="" id="weatherIcon" class="size-45 w-[170px] mt-[30px] ">   
             <h1 id="temp" class="text-[80px] font-[500] ">29°C</h1>    
             <h2  id="city" class="text-[45px] text-[400]  mt-[-10px]">Kolkata</h2>     
             <div id="details " class="w-[100%] flex justify-between">  
                 <div id="col">
-                    <img src="/dist/images/humidity.png" alt="" class="mt-[15px]">
-                    <div >/dist
+                    <img src="./images/humidity.png" alt="" class="mt-[15px]">
+                    <div >
                         <p id="humidity">50%</p>
                         <p>Humidity</p>
                     </div>
                 </div>
                 <div id="col">
-                    <img src="/dist/images/wind.png" alt="" class="mt-[19px]"> 
+                    <img src="./images/wind.png" alt="" class="mt-[19px]"> 
                     <div >
                         <p id="wind">15Km/h</p>
                         <p>Wind</p>
@@ -70,34 +70,34 @@
        document.querySelector("#wind").innerHTML=ans.wind.speed+"Km/h";
 
        if(ans.weather[0].main=="Clouds"){
-        weatherIcon.src="/dist/images/clouds.png";
+        weatherIcon.src="./images/clouds.png";
        }
        else if(ans.weather[0].main=="Clear"){images
-        weatherIcon.src="/dist/images/clear.png";
+        weatherIcon.src="./images/clear.png";
        }
        else if(ans.weather[0].main=="Drizzle"){
-        weatherIcon.src="/dist/images/drizzle.png";
+        weatherIcon.src="./images/drizzle.png";
        }
        else if(ans.weather[0].main=="Humidity"){
-        weatherIcon.src="/dist/images/humidity.png";
+        weatherIcon.src="./images/humidity.png";
        }
        else if(ans.weather[0].main=="Mist"){
-        weatherIcon.src="/dist/images/mist.png";
+        weatherIcon.src="./images/mist.png";
        }
        else if(ans.weather[0].main=="Rain"){
-        weatherIcon.src="/dist/images/rain.png";
+        weatherIcon.src="./images/rain.png";
        }
        else if(ans.weather[0].main=="Snow"){
-        weatherIcon.src="/dist/images/snow.png";
+        weatherIcon.src="./images/snow.png";
        }
        else if(ans.weather[0].main=="Wind"){
-        weatherIcon.src="/dist/images/wind.png";
+        weatherIcon.src="./images/wind.png";
        }
        else if(ans.weather[0].main=="Haze"){
-        weatherIcon.src="/dist/images/haze.png";
+        weatherIcon.src="./images/haze.png";
        }
        else if(ans.weather[0].main=="Smoke"){
-        weatherIcon.src="/dist/images/smoke.png";
+        weatherIcon.src="./images/smoke.png";
        }
     
        }
